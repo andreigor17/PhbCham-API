@@ -3,9 +3,13 @@ package com.irontech.phbchamp.domain.model;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.irontech.phbchamp.enums.Funcoes;
 
 @Entity
 public class Player {
@@ -16,6 +20,8 @@ public class Player {
 	private String nome;
     private String sobreNome;
     private String nick;
+    @Enumerated(EnumType.STRING)
+    private Funcoes funcao;
 	public Long getId() {
 		return id;
 	}
