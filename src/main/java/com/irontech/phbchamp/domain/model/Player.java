@@ -2,6 +2,7 @@ package com.irontech.phbchamp.domain.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,10 +19,12 @@ public class Player {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	@Column(name = "sobrenome")
     private String sobreNome;
     private String nick;
     @Enumerated(EnumType.STRING)
     private Funcoes funcao;
+    
 	public Long getId() {
 		return id;
 	}
