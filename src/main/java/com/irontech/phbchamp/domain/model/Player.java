@@ -4,13 +4,9 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.irontech.phbchamp.enums.Funcoes;
 
 @Entity
 public class Player {
@@ -22,8 +18,11 @@ public class Player {
 	@Column(name = "sobrenome")
     private String sobreNome;
     private String nick;
-    @Enumerated(EnumType.STRING)
-    private Funcoes funcao;
+    @Column(name = "possui_time" ,columnDefinition = "boolean default false")
+    private boolean possuiTime = false;
+    @Column(columnDefinition = "boolean default false")
+    private boolean capitao;
+
     
 	public Long getId() {
 		return id;
@@ -49,9 +48,23 @@ public class Player {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
+
+	public boolean isPossuiTime() {
+		return possuiTime;
+	}
+	public void setPossuiTime(boolean possuiTime) {
+		this.possuiTime = possuiTime;
+	}
+	public boolean isCapitao() {
+		return capitao;
+	}
+	public void setCapitao(boolean capitao) {
+		this.capitao = capitao;
+
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nick, nome, sobreNome);
+		return Objects.hash(capitao, id, nick, nome, possuiTime, sobreNome);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -62,10 +75,10 @@ public class Player {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nick, other.nick) && Objects.equals(nome, other.nome)
+		return capitao == other.capitao && Objects.equals(id, other.id) && Objects.equals(nick, other.nick)
+				&& Objects.equals(nome, other.nome) && possuiTime == other.possuiTime
 				&& Objects.equals(sobreNome, other.sobreNome);
 	}
 	
-    
 
 }

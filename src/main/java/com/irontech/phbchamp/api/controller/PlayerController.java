@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.irontech.phbchamp.domain.exception.EntidadeNaoEncontradaException;
 import com.irontech.phbchamp.domain.model.Player;
 import com.irontech.phbchamp.domain.repository.PlayerRepository;
 import com.irontech.phbchamp.domain.service.CadastroPlayerService;
@@ -40,14 +40,10 @@ public class PlayerController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<?> adicionar(Player player){
-		try {
-			player = cadastroPlayer.salvar(player);
-			return ResponseEntity.ok().build();			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public Player adicionar(@RequestBody Player player) {
+		return cadastroPlayer.salvar(player);
 	}
 }

@@ -1,2 +1,3 @@
-insert into player(nome, sobrenome, nick) values ('Andre', 'Igor','Dede');
-insert into player(nome, sobrenome, nick) values ('Xulios', 'Mapurunga', 'Dark');
+
+insert into player(nome, sobrenome, nick, possui_time, capitao) values ('Andre', 'Igor','Dede', false, false);
+insert into player(nome, sobrenome, nick, possui_time, capitao) values ('Xulios', 'Mapurunga', 'Dark', false, false);
