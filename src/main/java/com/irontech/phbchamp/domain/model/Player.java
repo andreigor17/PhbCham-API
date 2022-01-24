@@ -1,19 +1,18 @@
 package com.irontech.phbchamp.domain.model;
 
-import java.util.Objects;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.irontech.phbchamp.enums.Funcoes;
+import com.irontech.phbchamp.generic.ModeloGenerico;
 
 @Entity
-public class Player {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class Player extends ModeloGenerico implements Serializable {
+
 	private String nome;
 	@Column(name = "sobrenome")
     private String sobreNome;
@@ -22,14 +21,11 @@ public class Player {
     private boolean possuiTime = false;
     @Column(columnDefinition = "boolean default false")
     private boolean capitao;
+    private String avatar;
+    @Enumerated(EnumType.STRING)
+    private Funcoes funcao;
 
-    
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+   
 	public String getNome() {
 		return nome;
 	}
@@ -60,25 +56,21 @@ public class Player {
 	}
 	public void setCapitao(boolean capitao) {
 		this.capitao = capitao;
-
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(capitao, id, nick, nome, possuiTime, sobreNome);
+	public String getAvatar() {
+		return avatar;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Player other = (Player) obj;
-		return capitao == other.capitao && Objects.equals(id, other.id) && Objects.equals(nick, other.nick)
-				&& Objects.equals(nome, other.nome) && possuiTime == other.possuiTime
-				&& Objects.equals(sobreNome, other.sobreNome);
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
+	public Funcoes getFuncao() {
+		return funcao;
+	}
+	public void setFuncao(Funcoes funcao) {
+		this.funcao = funcao;
+	}
+	
+	
 	
 
 }
