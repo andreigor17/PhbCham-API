@@ -25,6 +25,8 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     private StatusCamp status;
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Partida> partidas;
+    
+    
 	public List<Team> getTeams() {
 		return Teams;
 	}

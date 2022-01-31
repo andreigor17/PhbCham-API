@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.irontech.phbchamp.generic.ModeloGenerico;
@@ -12,10 +13,11 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 public class Team extends ModeloGenerico implements Serializable {
 	
 	private String nome;
-    @OneToMany
+    @ManyToMany
     private List<Player> players;
     @OneToMany
     private List<Estatisticas> estatisticas;
+    
 
     public String getNome() {
         return nome;

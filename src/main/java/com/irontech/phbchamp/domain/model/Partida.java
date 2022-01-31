@@ -26,6 +26,7 @@ public class Partida extends ModeloGenerico implements Serializable{
     private int scoreT1;
     
     private int scoreT2;
+    
     @Enumerated(EnumType.STRING)
     private Maps mapas;
 
