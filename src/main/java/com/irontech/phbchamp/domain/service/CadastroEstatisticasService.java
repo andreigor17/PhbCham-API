@@ -1,8 +1,5 @@
 package com.irontech.phbchamp.domain.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,15 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.irontech.phbchamp.domain.exception.EntidadeEmUsoException;
 import com.irontech.phbchamp.domain.exception.EntidadeNaoEncontradaException;
-import com.irontech.phbchamp.domain.model.Campeonato;
-import com.irontech.phbchamp.domain.model.Player;
-import com.irontech.phbchamp.domain.model.Team;
+import com.irontech.phbchamp.domain.model.Estatisticas;
 import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
+import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
 import com.irontech.phbchamp.domain.repository.PlayerRepository;
 import com.irontech.phbchamp.domain.repository.TeamRepository;
 
 @Service
-public class CadastroCampService {
+public class CadastroEstatisticasService {
 
 	@Autowired
 	private CampeonatoRepository campeonatoRepository;
@@ -26,32 +22,20 @@ public class CadastroCampService {
 	private PlayerRepository playerRepository;
 	@Autowired
 	private TeamRepository teamRepository;
+	@Autowired
+	private EstatisticasRepository estatisticasRepository;
 
-	public Campeonato salvar(Campeonato campeonato) {
-		List<Team> teams = new ArrayList<>();
-
-		for (Team t : campeonato.getTeams()) {
-			Long teamId = t.getId();
-			Team team = teamRepository.buscar(teamId);
-			if (team == null) {
-				throw new EntidadeNaoEncontradaException(
-						String.format("Não existe time com o id %d cadastrado!", teamId));
-			}
-			teams.add(team);
-		}
-
-		campeonato.setTeams(teams);
-		return campeonatoRepository.salvar(campeonato);
-
+	public Estatisticas salvar(Estatisticas estatisticas) {
+		return estatisticasRepository.salvar(estatisticas);
 	}
 
-	public void excluir(Long campId) {
+	public void excluir(Long estId) {
 		try {
-			campeonatoRepository.remover(campId);
+			estatisticasRepository.remover(estId);
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException("Campeonato não encontrado!");
+			throw new EntidadeNaoEncontradaException("Estatistica não encontrada!");
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException("Campeonato não pode ser removido!");
+			throw new EntidadeEmUsoException("Estatistica não pode ser removida!");
 		}
 	}
 

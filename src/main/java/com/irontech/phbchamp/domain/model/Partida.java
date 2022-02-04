@@ -14,9 +14,6 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 @Entity
 public class Partida extends ModeloGenerico implements Serializable{
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    private Campeonato camp;
-    
     @ManyToOne
     private Team team1;
     
@@ -65,8 +62,7 @@ public class Partida extends ModeloGenerico implements Serializable{
         this.scoreT2 = scoreT2;
     }
 
-    public Partida(Campeonato camp, Team team1, Team team2) {
-        this.camp = camp;
+    public Partida(Team team1, Team team2) {
         this.team1 = team1;
         this.team2 = team2;
     }

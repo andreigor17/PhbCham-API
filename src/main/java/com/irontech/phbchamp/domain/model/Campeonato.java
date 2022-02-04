@@ -16,28 +16,23 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 @Entity
 public class Campeonato extends ModeloGenerico implements Serializable {
 	
-	@ManyToMany
-    private List<Team> Teams;
-    @ManyToMany
-    private List<Player> players;
+	
     private String nome;
+    @ManyToMany
+    private List<Team> teams;
     @Enumerated(EnumType.STRING)
     private StatusCamp status;
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Partida> partidas;
     
     
+	
 	public List<Team> getTeams() {
-		return Teams;
+		return teams;
 	}
+	
 	public void setTeams(List<Team> teams) {
-		Teams = teams;
-	}
-	public List<Player> getPlayers() {
-		return players;
-	}
-	public void setPlayers(List<Player> players) {
-		this.players = players;
+		this.teams = teams;
 	}
 	public String getNome() {
 		return nome;
