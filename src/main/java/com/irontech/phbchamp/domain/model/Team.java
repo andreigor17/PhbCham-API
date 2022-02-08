@@ -22,6 +22,7 @@ public class Team extends ModeloGenerico implements Serializable {
     public String getNome() {
         return nome;
     }
+    
 
     public void setNome(String nome) {
         this.nome = nome;

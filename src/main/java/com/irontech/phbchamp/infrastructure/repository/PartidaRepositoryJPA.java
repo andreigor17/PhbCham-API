@@ -43,14 +43,17 @@ public class PartidaRepositoryJPA implements PartidaRepository {
 		Partida partida = buscar(id);
 		manager.remove(partida);
 	}
-
+	
 	public List<Partida> partidaPorCamp(Campeonato camp) {
-		String sql = "select p from Partida p where ";
+		System.out.println("camp " + camp);
 
-		sql += "p.ativo = true";	
+		String sql = "SELECT partida FROM Partida partida "
+				+ "  JOIN campeonato.partidas campeonato WHERE campeonato =: campeonato";
 		
 
 		Query query = manager.createQuery(sql);
+
+		query.setParameter("campeonato", camp);
 
 		return query.getResultList();
 	}

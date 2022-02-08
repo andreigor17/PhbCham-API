@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 import com.irontech.phbchamp.enums.Maps;
@@ -16,7 +15,6 @@ public class Partida extends ModeloGenerico implements Serializable{
 	
     @ManyToOne
     private Team team1;
-    
     @ManyToOne
     private Team team2;
     
@@ -65,6 +63,7 @@ public class Partida extends ModeloGenerico implements Serializable{
     public Partida(Team team1, Team team2) {
         this.team1 = team1;
         this.team2 = team2;
+        
     }
 
 }

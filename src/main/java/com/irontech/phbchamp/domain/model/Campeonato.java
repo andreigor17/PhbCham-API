@@ -22,7 +22,7 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     private List<Team> teams;
     @Enumerated(EnumType.STRING)
     private StatusCamp status;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Partida> partidas;
     
     
