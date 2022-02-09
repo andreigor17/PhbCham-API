@@ -2,7 +2,6 @@ package com.irontech.phbchamp.domain.repository;
 
 import java.util.List;
 
-import com.irontech.phbchamp.domain.model.Campeonato;
 import com.irontech.phbchamp.domain.model.Partida;
 
 public interface PartidaRepository {
@@ -15,6 +14,5 @@ public interface PartidaRepository {
 
 	void remover(Long id);
 
-	List<Partida> partidaPorCamp(Campeonato camp);
 
 }

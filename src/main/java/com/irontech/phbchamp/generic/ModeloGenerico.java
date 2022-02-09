@@ -20,7 +20,7 @@ public class ModeloGenerico implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     /**
      * Quando false, o objeto encontra-se excluido/cancelado. Caso contrário

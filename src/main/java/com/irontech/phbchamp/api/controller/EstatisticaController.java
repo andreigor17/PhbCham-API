@@ -32,7 +32,7 @@ public class EstatisticaController {
 		return estatisticasRepository.listar();
 	}
 
-	@GetMapping("/{estatisticasId}")
+	@GetMapping("/{estId}")
 	public ResponseEntity<Estatisticas> buscar(@PathVariable Long estId) {
 		Estatisticas est = estatisticasRepository.buscar(estId);
 		if (est != null) {

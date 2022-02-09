@@ -13,21 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.irontech.phbchamp.domain.model.Campeonato;
-import com.irontech.phbchamp.domain.model.Estatisticas;
 import com.irontech.phbchamp.domain.model.Partida;
-import com.irontech.phbchamp.domain.model.Player;
-import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
 import com.irontech.phbchamp.domain.repository.PartidaRepository;
-import com.irontech.phbchamp.domain.repository.PlayerRepository;
-import com.irontech.phbchamp.domain.service.CadastroCampService;
 import com.irontech.phbchamp.domain.service.CadastroPartidaService;
-import com.irontech.phbchamp.domain.service.CadastroPlayerService;
 
 @RestController
 @RequestMapping("/partidas")
 public class PartidaController {
-	
+
 	@Autowired
 	public PartidaRepository partidaRepository;
 	@Autowired
@@ -45,6 +38,7 @@ public class PartidaController {
 			return ResponseEntity.status(HttpStatus.OK).body(p);
 		} else {
 			return ResponseEntity.notFound().build();
+
 		}
 	}
 
@@ -52,12 +46,20 @@ public class PartidaController {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Partida adicionar(@RequestBody Partida p) {
 		return cadastroPartidaService.salvar(p);
-		
+
 	}
-	
-	@GetMapping("/partidaPorCamp")
-	public List<Partida> partidaPorCamp(Campeonato camp) {
-		return cadastroPartidaService.partidasPorCamp(camp);
+
+	@GetMapping("partidasPorCamp/{campId}")
+	public ResponseEntity<List<Partida>> buscarPartidaPorCamp(@PathVariable String campId) {
+		List<Partida> p = cadastroPartidaService.partidasPorCamp(campId);
+
+		if (p != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(p);
+		} else {
+			return ResponseEntity.notFound().build();
+
+		}
+
 	}
 
 }

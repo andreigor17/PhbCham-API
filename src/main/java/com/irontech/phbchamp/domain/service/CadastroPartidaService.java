@@ -1,5 +1,6 @@
 package com.irontech.phbchamp.domain.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,18 @@ public class CadastroPartidaService {
 		}
 	}
 
-	public List<Partida> partidasPorCamp(Campeonato camp) {
-		if (camp.getId() != null) {
-			camp = campeonatoRepository.buscar(camp.getId());
+	public List<Partida> partidasPorCamp(String campId) {
+		Campeonato camp = new Campeonato();
+		if (campId != null) {
+			camp = campeonatoRepository.buscar(Long.parseLong(campId));
 		}
+
 		if (camp != null) {
-			return partidaRepository.partidaPorCamp(camp);
+			List<Partida> p = new ArrayList<>();
+			p = camp.getPartidas();
+			return p;
 		}
+
 		return null;
 
 	}

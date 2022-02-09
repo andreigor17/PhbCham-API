@@ -22,7 +22,8 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     private List<Team> teams;
     @Enumerated(EnumType.STRING)
     private StatusCamp status;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany
+    (cascade = CascadeType.ALL)
     private List<Partida> partidas;
     
     
@@ -53,6 +54,10 @@ public class Campeonato extends ModeloGenerico implements Serializable {
 		this.partidas = partidas;
 	}
     
-    
+    @Override
+    public String toString() {
+    	
+    	return "Nome" + nome + "id" + id;
+    }
 
 }
