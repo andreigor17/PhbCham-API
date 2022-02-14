@@ -48,8 +48,9 @@ public class EstatisticaController {
 		return cadastroEstatisticasService.salvar(estatisticas);
 	}
 	
-	@GetMapping("/estatisticasPorTime")
-	public List<Estatisticas> estatisticasPorTime(Long id, Long id2) {
-		return estatisticasRepository.estatisticaPorTime(id, id2);
+	@GetMapping("estatisticasPorTime/{Id}/{Id2}")
+	public List<Estatisticas> estatisticasPorTime(@PathVariable Long Id, @PathVariable Long Id2) {
+            System.out.println("ids " + Id);
+		return estatisticasRepository.estatisticaPorTime(Id, Id2);
 	}
 }

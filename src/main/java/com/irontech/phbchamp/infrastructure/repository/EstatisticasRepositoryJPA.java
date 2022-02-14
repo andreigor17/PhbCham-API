@@ -44,7 +44,7 @@ public class EstatisticasRepositoryJPA implements EstatisticasRepository {
 	}
 	
 	@Override
-	public List<Estatisticas> estatisticaPorTime(Long id, Long id2) {
+	public List<Estatisticas> estatisticaPorTime(Long id, Long id2) {            
 		String sql = "select est from Estatisticas est where ";
 
         sql += "est.ativo = true";
