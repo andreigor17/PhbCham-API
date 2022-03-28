@@ -11,18 +11,16 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 
 @Entity
 public class Team extends ModeloGenerico implements Serializable {
-	
-	private String nome;
+
+    private String nome;
     @ManyToMany
     private List<Player> players;
     @OneToMany
     private List<Estatisticas> estatisticas;
-    
 
     public String getNome() {
         return nome;
     }
-    
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -35,7 +33,6 @@ public class Team extends ModeloGenerico implements Serializable {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-    
 
     public List<Estatisticas> getEstatisticas() {
         return estatisticas;

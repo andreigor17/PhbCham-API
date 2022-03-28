@@ -15,49 +15,61 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 
 @Entity
 public class Campeonato extends ModeloGenerico implements Serializable {
-	
-	
+
     private String nome;
     @ManyToMany
     private List<Team> teams;
     @Enumerated(EnumType.STRING)
     private StatusCamp status;
-    @OneToMany
-    (cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Partida> partidas;
-    
-    
-	
-	public List<Team> getTeams() {
-		return teams;
-	}
-	
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public StatusCamp getStatus() {
-		return status;
-	}
-	public void setStatus(StatusCamp status) {
-		this.status = status;
-	}
-	public List<Partida> getPartidas() {
-		return partidas;
-	}
-	public void setPartidas(List<Partida> partidas) {
-		this.partidas = partidas;
-	}
-    
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Estatisticas> estatisticas;
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public StatusCamp getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusCamp status) {
+        this.status = status;
+    }
+
+    public List<Partida> getPartidas() {
+        return partidas;
+    }
+
+    public void setPartidas(List<Partida> partidas) {
+        this.partidas = partidas;
+    }
+
+    public List<Estatisticas> getEstatisticas() {
+        return estatisticas;
+    }
+
+    public void setEstatisticas(List<Estatisticas> estatisticas) {
+        this.estatisticas = estatisticas;
+    }
+
     @Override
     public String toString() {
-    	
-    	return "Nome" + nome + "id" + id;
+
+        return "Nome" + nome + "id" + id;
     }
 
 }

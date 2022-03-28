@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.irontech.phbchamp.generic.ModeloGenerico;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Estatisticas extends ModeloGenerico implements Serializable {
@@ -24,8 +26,10 @@ public class Estatisticas extends ModeloGenerico implements Serializable {
     private Integer partidas = 0;
     @Column(columnDefinition = "integer default 0")
     private Integer pontos = 0;
-    private Long team_id;
-    private Long campeonato_id;
+    @ManyToOne
+    private Team team;
+    @ManyToOne
+    private Campeonato campeonato;
 
     public Integer getKills() {
         return kills;
@@ -75,21 +79,20 @@ public class Estatisticas extends ModeloGenerico implements Serializable {
         this.partidas = partidas;
     }
 
-    public Long getTeam_id() {
-        return team_id;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeam_id(Long team_id) {
-        this.team_id = team_id;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
-
-    public Long getCampeonato_id() {
-        return campeonato_id;
+    public Campeonato getCampeonato() {
+        return campeonato;
     }
 
-    public void setCampeonato_id(Long campeonato_id) {
-        this.campeonato_id = campeonato_id;
+    public void setCampeonato(Campeonato campeonato) {
+        this.campeonato = campeonato;
     }
 
     public Integer getPontos() {

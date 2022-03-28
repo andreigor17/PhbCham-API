@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
+import com.irontech.phbchamp.domain.model.Team;
+import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
 import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
+import com.irontech.phbchamp.domain.repository.TeamRepository;
 import com.irontech.phbchamp.domain.service.CadastroEstatisticasService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -29,6 +32,10 @@ public class EstatisticaController {
 
     @Autowired
     public EstatisticasRepository estatisticasRepository;
+    @Autowired
+    public TeamRepository teamRepository;
+    @Autowired
+    public CampeonatoRepository campeonatoRepository;
 
     @GetMapping
     public List<Estatisticas> estatisticas() {
@@ -51,10 +58,20 @@ public class EstatisticaController {
         return cadastroEstatisticasService.salvar(estatisticas);
     }
 
-    @GetMapping("estatisticasPorTime/{Id}/{Id2}")
-    public List<Estatisticas> estatisticasPorTime(@PathVariable Long Id, @PathVariable Long Id2) {
-        System.out.println("ids " + Id);
-        return estatisticasRepository.estatisticaPorTime(Id, Id2);
+    @GetMapping("estatisticasPorTime/{teamId}/{campId2}")
+    public List<Estatisticas> estatisticasPorTime(@PathVariable Long teamId, @PathVariable Long campId2) {
+        Team t = new Team();
+        Campeonato c = new Campeonato();
+        
+        if (teamId != null) {
+            t = teamRepository.buscar(teamId);
+        }
+
+        if (campId2 != null) {
+            c = campeonatoRepository.buscar(campId2);
+        }
+
+        return estatisticasRepository.estatisticaPorTime(t, c);
     }
 
     @PutMapping("/{estatsId}")
