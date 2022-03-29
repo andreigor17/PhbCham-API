@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 
 import com.irontech.phbchamp.enums.StatusCamp;
 import com.irontech.phbchamp.generic.ModeloGenerico;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Campeonato extends ModeloGenerico implements Serializable {
@@ -25,6 +28,8 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     private List<Partida> partidas;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Estatisticas> estatisticas;
+    @Temporal(TemporalType.DATE)
+    private Date data;
 
     public List<Team> getTeams() {
         return teams;
@@ -65,6 +70,16 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     public void setEstatisticas(List<Estatisticas> estatisticas) {
         this.estatisticas = estatisticas;
     }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    
 
     @Override
     public String toString() {
