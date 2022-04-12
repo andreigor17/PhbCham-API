@@ -7,6 +7,8 @@ insert into player(ativo, versao, nome, sobrenome, nick, possui_time, capitao, a
 insert into player(ativo, versao,  nome, sobrenome, nick, possui_time, capitao, avatar, funcao) values (true, 1, 'Arthur', 'Oliveira', 'iFault', false, false, null, 'AWPER');
 insert into player(ativo, versao, nome, sobrenome, nick, possui_time, capitao, avatar, funcao) values (true, 1,  'Daniel', 'Santos','Babisco', false, false, null, 'RIFLER');
 insert into player(ativo, versao,  nome, sobrenome, nick, possui_time, capitao, avatar, funcao) values (true, 1, 'Gustavo', 'Meireles', 'Gowe', false, false, null, 'AWPER');
+insert into player(ativo, versao, nome, sobrenome, nick, possui_time, capitao, avatar, funcao) values (true, 1,  'Gustavo', 'Menezes','xetoide', false, false, null, 'RIFLER');
+insert into player(ativo, versao,  nome, sobrenome, nick, possui_time, capitao, avatar, funcao) values (true, 1, 'Saulo', 'Ramos', 'SSR', false, false, null, 'AWPER');
 
 insert into team(ativo,  versao, nome) values (true, 1, 'TeamRaba');
 insert into team(ativo,  versao, nome) values (true, 1, 'GOATS');
