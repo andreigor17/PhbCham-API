@@ -1,5 +1,6 @@
 package com.irontech.phbchamp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,8 +14,8 @@ import javax.persistence.OneToMany;
 import com.irontech.phbchamp.enums.StatusCamp;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Campeonato extends ModeloGenerico implements Serializable {
@@ -28,8 +29,12 @@ public class Campeonato extends ModeloGenerico implements Serializable {
     private List<Partida> partidas;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Estatisticas> estatisticas;
-    @Temporal(TemporalType.DATE)
-    private Date data;
+    @Column(name = "data_camp")
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataCamp;
+    @Column(name = "data_string")
+    private String dataString;
 
     public List<Team> getTeams() {
         return teams;
@@ -71,15 +76,21 @@ public class Campeonato extends ModeloGenerico implements Serializable {
         this.estatisticas = estatisticas;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataCamp() {
+        return dataCamp;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataCamp(Date dataCamp) {
+        this.dataCamp = dataCamp;
     }
-    
-    
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
 
     @Override
     public String toString() {
