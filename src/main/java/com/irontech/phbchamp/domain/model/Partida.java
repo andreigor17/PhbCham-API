@@ -1,10 +1,13 @@
 package com.irontech.phbchamp.domain.model;
 
+import com.irontech.phbchamp.enums.Maps;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.util.List;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -57,7 +60,6 @@ public class Partida extends ModeloGenerico implements Serializable {
         this.team2 = team2;
     }
 
-<<<<<<< HEAD
     public int getScoreT1() {
         return scoreT1;
     }
