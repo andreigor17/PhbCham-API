@@ -3,19 +3,17 @@ package com.irontech.phbchamp.domain.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-
-import com.irontech.phbchamp.enums.Maps;
 import com.irontech.phbchamp.generic.ModeloGenerico;
+import java.util.List;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Partida extends ModeloGenerico implements Serializable {
 
     @ManyToOne
     private Team team1;
+    
     @ManyToOne
     private Team team2;
 
@@ -28,9 +26,20 @@ public class Partida extends ModeloGenerico implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Maps mapas;
+    
+    @OneToMany
+    private List<ItemPartida> itemPartida;
 
     public Partida() {
     }
+
+    public List<ItemPartida> getItemPartida() {
+        return itemPartida;
+    }
+
+    public void setItemPartida(List<ItemPartida> itemPartida) {
+        this.itemPartida = itemPartida;
+    }       
 
     public Team getTeam1() {
         return team1;
@@ -48,6 +57,7 @@ public class Partida extends ModeloGenerico implements Serializable {
         this.team2 = team2;
     }
 
+<<<<<<< HEAD
     public int getScoreT1() {
         return scoreT1;
     }
@@ -86,5 +96,4 @@ public class Partida extends ModeloGenerico implements Serializable {
         this.mapas = mapas;
     }
     
-
 }
