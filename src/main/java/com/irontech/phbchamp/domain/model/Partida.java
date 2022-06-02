@@ -12,23 +12,26 @@ import com.irontech.phbchamp.enums.Maps;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 
 @Entity
-public class Partida extends ModeloGenerico implements Serializable{
-	
+public class Partida extends ModeloGenerico implements Serializable {
+
     @ManyToOne
     private Team team1;
     @ManyToOne
     private Team team2;
-    
+
+    @ManyToOne
+    private Campeonato camp;
+
     private int scoreT1;
-    
+
     private int scoreT2;
-    
+
     @Enumerated(EnumType.STRING)
     private Maps mapas;
 
     public Partida() {
     }
-    
+
     public Team getTeam1() {
         return team1;
     }
@@ -64,7 +67,23 @@ public class Partida extends ModeloGenerico implements Serializable{
     public Partida(Team team1, Team team2) {
         this.team1 = team1;
         this.team2 = team2;
-        
+
+    }
+
+    public Campeonato getCamp() {
+        return camp;
+    }
+
+    public void setCamp(Campeonato camp) {
+        this.camp = camp;
+    }
+
+    public Maps getMapas() {
+        return mapas;
+    }
+
+    public void setMapas(Maps mapas) {
+        this.mapas = mapas;
     }
     
 
