@@ -5,13 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Partida extends ModeloGenerico implements Serializable {
 
-    
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ItemPartida> itemPartida;
 
     public Partida() {
@@ -24,5 +24,5 @@ public class Partida extends ModeloGenerico implements Serializable {
     public void setItemPartida(List<ItemPartida> itemPartida) {
         this.itemPartida = itemPartida;
     }
-    
+
 }

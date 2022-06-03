@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -28,6 +29,12 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     private Maps mapas;
     @ManyToOne
     private Partida partida;
+    @OneToOne
+    private Team team1;
+    @OneToOne
+    private Team team2;
+    @ManyToOne
+    private Campeonato campeonato;
 
     public int getScoreT1() {
         return scoreT1;
@@ -60,7 +67,29 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
+
+    public Team getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(Team team1) {
+        this.team1 = team1;
+    }
+
+    public Team getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(Team team2) {
+        this.team2 = team2;
+    }
     
-    
+    public Campeonato getCampeonato() {
+        return campeonato;
+    }
+
+    public void setCampeonato(Campeonato campeonato) {
+        this.campeonato = campeonato;
+    }
 
 }

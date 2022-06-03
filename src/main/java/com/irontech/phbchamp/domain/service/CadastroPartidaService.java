@@ -33,7 +33,7 @@ public class CadastroPartidaService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException("Partida não encontrada!");
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException("Partida não pode ser removida pois esta em uso por um time");
+			throw new EntidadeEmUsoException("Partida não pode ser removida pois esta em andamento");
 		}
 	}
 

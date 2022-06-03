@@ -5,10 +5,21 @@
  */
 package com.irontech.phbchamp.domain.repository;
 
+import com.irontech.phbchamp.domain.model.ItemPartida;
+import java.util.List;
+
 /**
  *
  * @author andre
  */
 public interface ItemPartidaRepository {
-    
+
+    List<ItemPartida> listar();
+
+    ItemPartida buscar(Long id);
+
+    ItemPartida salvar(ItemPartida itemPartida);
+
+    void remover(Long id);
+
 }
