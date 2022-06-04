@@ -9,6 +9,9 @@ import javax.persistence.Enumerated;
 
 import com.irontech.phbchamp.enums.Funcoes;
 import com.irontech.phbchamp.generic.ModeloGenerico;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Player extends ModeloGenerico implements Serializable {
@@ -24,6 +27,8 @@ public class Player extends ModeloGenerico implements Serializable {
     private String avatar;
     @Enumerated(EnumType.STRING)
     private Funcoes funcao;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Estatisticas> estatisticas; 
 
     public String getNome() {
         return nome;
@@ -80,5 +85,14 @@ public class Player extends ModeloGenerico implements Serializable {
     public void setFuncao(Funcoes funcao) {
         this.funcao = funcao;
     }
+
+    public List<Estatisticas> getEstatisticas() {
+        return estatisticas;
+    }
+
+    public void setEstatisticas(List<Estatisticas> estatisticas) {
+        this.estatisticas = estatisticas;
+    }
+
 
 }

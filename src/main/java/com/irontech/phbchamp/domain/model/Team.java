@@ -8,6 +8,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.irontech.phbchamp.generic.ModeloGenerico;
+import javax.persistence.CascadeType;
 
 @Entity
 public class Team extends ModeloGenerico implements Serializable {
@@ -15,7 +16,7 @@ public class Team extends ModeloGenerico implements Serializable {
     private String nome;
     @ManyToMany
     private List<Player> players;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Estatisticas> estatisticas;
 
     public String getNome() {

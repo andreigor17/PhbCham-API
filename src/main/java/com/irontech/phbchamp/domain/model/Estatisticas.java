@@ -31,6 +31,8 @@ public class Estatisticas extends ModeloGenerico implements Serializable {
     private Campeonato campeonato;
     @ManyToOne
     private ItemPartida itemPartida;
+    @ManyToOne
+    private Player player;
 
     public Integer getKills() {
         return kills;
@@ -110,6 +112,14 @@ public class Estatisticas extends ModeloGenerico implements Serializable {
 
     public void setItemPartida(ItemPartida itemPartida) {
         this.itemPartida = itemPartida;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
 }
