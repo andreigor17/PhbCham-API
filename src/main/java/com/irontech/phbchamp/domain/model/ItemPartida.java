@@ -8,6 +8,7 @@ package com.irontech.phbchamp.domain.model;
 import com.irontech.phbchamp.enums.Maps;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -35,6 +36,8 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     private Team team2;
     @ManyToOne
     private Campeonato campeonato;
+    @OneToOne
+    private Estatisticas estatisticas;
 
     public int getScoreT1() {
         return scoreT1;
@@ -91,5 +94,13 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     public void setCampeonato(Campeonato campeonato) {
         this.campeonato = campeonato;
     }
+
+    public Estatisticas getEstatisticas() {
+        return estatisticas;
+    }
+
+    public void setEstatisticas(Estatisticas estatisticas) {
+        this.estatisticas = estatisticas;
+    }        
 
 }
