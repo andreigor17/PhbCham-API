@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
+import com.irontech.phbchamp.domain.model.ItemPartida;
 import com.irontech.phbchamp.domain.model.Team;
 import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
 
@@ -57,6 +58,24 @@ public class EstatisticasRepositoryJPA implements EstatisticasRepository {
 
         if (camp != null) {
             sql += " and est.campeonato =" + camp.getId();
+        }
+
+        Query query = manager.createQuery(sql);
+
+        return query.getResultList();
+    }
+
+    public List<Estatisticas> estatisticaPorItemPartida(Team team, ItemPartida item) {
+        String sql = "select est from Estatisticas est where ";
+
+        sql += "est.ativo = true";
+
+        if (team != null) {
+            sql += " and est.team = " + team.getId();
+        }
+
+        if (item != null) {
+            sql += " and est.itemPartida =" + item.getId();
         }
 
         Query query = manager.createQuery(sql);

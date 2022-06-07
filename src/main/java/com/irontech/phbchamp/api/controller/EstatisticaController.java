@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
+import com.irontech.phbchamp.domain.model.ItemPartida;
 import com.irontech.phbchamp.domain.model.Team;
 import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
 import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
+import com.irontech.phbchamp.domain.repository.ItemPartidaRepository;
 import com.irontech.phbchamp.domain.repository.TeamRepository;
 import com.irontech.phbchamp.domain.service.CadastroEstatisticasService;
 import org.springframework.beans.BeanUtils;
@@ -29,13 +31,14 @@ public class EstatisticaController {
 
     @Autowired
     public CadastroEstatisticasService cadastroEstatisticasService;
-
     @Autowired
     public EstatisticasRepository estatisticasRepository;
     @Autowired
     public TeamRepository teamRepository;
     @Autowired
     public CampeonatoRepository campeonatoRepository;
+    @Autowired
+    public ItemPartidaRepository itemPartidaRepository;
 
     @GetMapping
     public List<Estatisticas> estatisticas() {
@@ -62,7 +65,7 @@ public class EstatisticaController {
     public List<Estatisticas> estatisticasPorTime(@PathVariable Long teamId, @PathVariable Long campId2) {
         Team t = new Team();
         Campeonato c = new Campeonato();
-        
+
         if (teamId != null) {
             t = teamRepository.buscar(teamId);
         }
@@ -72,6 +75,22 @@ public class EstatisticaController {
         }
 
         return estatisticasRepository.estatisticaPorTime(t, c);
+    }
+
+    @GetMapping("estatisticasPorItemPartida/{teamId}/{itemPartidaId}")
+    public List<Estatisticas> estatisticasPorItemPartida(@PathVariable Long teamId, @PathVariable Long itemPartidaId) {
+        Team t = new Team();
+        ItemPartida item = new ItemPartida();
+
+        if (teamId != null) {
+            t = teamRepository.buscar(teamId);
+        }
+
+        if (item != null) {
+            item = itemPartidaRepository.buscar(itemPartidaId);
+        }
+
+        return estatisticasRepository.estatisticaPorItemPartida(t, item);
     }
 
     @PutMapping("/{estatsId}")
