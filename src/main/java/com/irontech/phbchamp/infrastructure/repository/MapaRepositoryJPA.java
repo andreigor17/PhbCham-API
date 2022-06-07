@@ -19,33 +19,33 @@ import org.springframework.stereotype.Component;
  * @author andre
  */
 @Component
-public class MapaRepositoryJPA implements MapaRepository{
-    
-    @PersistenceContext
-	private EntityManager manager;
-	
-	@Override
-	public List<Mapas> listar(){
-		TypedQuery<Mapas> query = manager.createQuery("from Mapas", Mapas.class);
-		return query.getResultList();
-	}
-	
-	@Override
-	public Mapas buscar(Long id) {
-		return manager.find(Mapas.class, id);
-	}
-	
-	@Override
-	@Transactional
-	public Mapas salvar(Mapas mapas) {
-		return manager.merge(mapas);
-	}
+public class MapaRepositoryJPA implements MapaRepository {
 
-	@Override
-	@Transactional
-	public void remover(Long id) {
-		Mapas mapas = buscar(id);
-		manager.remove(mapas);
-	}
-    
+    @PersistenceContext
+    private EntityManager manager;
+
+    @Override
+    public List<Mapas> listar() {
+        TypedQuery<Mapas> query = manager.createQuery("from Mapas", Mapas.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Mapas buscar(Long id) {
+        return manager.find(Mapas.class, id);
+    }
+
+    @Override
+    @Transactional
+    public Mapas salvar(Mapas mapas) {
+        return manager.merge(mapas);
+    }
+
+    @Override
+    @Transactional
+    public void remover(Long id) {
+        Mapas mapas = buscar(id);
+        manager.remove(mapas);
+    }
+
 }
