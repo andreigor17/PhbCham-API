@@ -9,6 +9,8 @@ import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
 /**
@@ -22,6 +24,8 @@ public class PickBan extends ModeloGenerico implements Serializable {
     List<Mapas> pickedMapa;
     @OneToMany
     List<Mapas> remainingMapa;
+    @Enumerated(EnumType.STRING)
+    private TipoPickBan tipoPickBan;
 
     public List<Mapas> getPickedMapa() {
         return pickedMapa;
@@ -37,6 +41,14 @@ public class PickBan extends ModeloGenerico implements Serializable {
 
     public void setRemainingMapa(List<Mapas> remainingMapa) {
         this.remainingMapa = remainingMapa;
+    }
+
+    public TipoPickBan getTipoPickBan() {
+        return tipoPickBan;
+    }
+
+    public void setTipoPickBan(TipoPickBan tipoPickBan) {
+        this.tipoPickBan = tipoPickBan;
     }
 
 }
