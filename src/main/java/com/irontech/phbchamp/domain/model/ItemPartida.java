@@ -25,9 +25,8 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     private int scoreT1;
 
     private int scoreT2;
-
-    @Enumerated(EnumType.STRING)
-    private Maps mapas;
+    @OneToOne
+    private Mapas mapas;
     @ManyToOne
     private Partida partida;
     @OneToOne
@@ -55,11 +54,11 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
         this.scoreT2 = scoreT2;
     }
 
-    public Maps getMapas() {
+    public Mapas getMapas() {
         return mapas;
     }
 
-    public void setMapas(Maps mapas) {
+    public void setMapas(Mapas mapas) {
         this.mapas = mapas;
     }
 
@@ -86,7 +85,7 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     public void setTeam2(Team team2) {
         this.team2 = team2;
     }
-    
+
     public Campeonato getCampeonato() {
         return campeonato;
     }
@@ -101,6 +100,6 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
 
     public void setEstatisticas(Estatisticas estatisticas) {
         this.estatisticas = estatisticas;
-    }        
+    }
 
 }
