@@ -48,15 +48,32 @@ public class ItemPartidaController {
 
     }
 
-    @PutMapping("/{itemId}")
-    public ResponseEntity<ItemPartida> atualizar(@PathVariable Long itemId, @RequestBody ItemPartida item) {
-        ItemPartida itemAtual = itemPartidaRepository.buscar(itemId);
+//    @PutMapping("/{itemId}")
+//    public ResponseEntity<ItemPartida> atualizar(@PathVariable Long itemId, @RequestBody ItemPartida item) {
+//        System.out.println("teste");
+//        ItemPartida itemAtual = itemPartidaRepository.buscar(itemId);
+//
+//        BeanUtils.copyProperties(item, itemAtual);
+//        itemPartidaRepository.salvar(itemAtual);
+//
+//        return ResponseEntity.ok(itemAtual);
+//
+//    }
+    
+     @PutMapping()
+    public ResponseEntity<List<ItemPartida>> atualizarLista( @RequestBody List<ItemPartida> item) {
+        System.out.println("teste");
+        for(ItemPartida i : item){
+            ItemPartida itemAtual = itemPartidaRepository.buscar(i.getId());
 
-        BeanUtils.copyProperties(item, itemAtual);
+        BeanUtils.copyProperties(i, itemAtual);
         itemPartidaRepository.salvar(itemAtual);
 
-        return ResponseEntity.ok(itemAtual);
+        
+        }
+        return ResponseEntity.ok(item);
 
     }
+
 
 }
