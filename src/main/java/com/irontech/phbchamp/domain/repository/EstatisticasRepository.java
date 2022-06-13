@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
 import com.irontech.phbchamp.domain.model.ItemPartida;
+import com.irontech.phbchamp.domain.model.Partida;
 import com.irontech.phbchamp.domain.model.Team;
 
 public interface EstatisticasRepository {
@@ -20,5 +21,7 @@ public interface EstatisticasRepository {
 	List<Estatisticas> estatisticaPorTime(Team team, Campeonato camp);
         
         List<Estatisticas> estatisticaPorItemPartida(Team team, ItemPartida item);
+        
+        List<Estatisticas> estatisticasGeraisPorItemPartida(Team team, Partida partida);
 
 }

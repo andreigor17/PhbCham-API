@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
 import com.irontech.phbchamp.domain.model.ItemPartida;
+import com.irontech.phbchamp.domain.model.Partida;
 import com.irontech.phbchamp.domain.model.Team;
 import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
 
@@ -65,6 +66,7 @@ public class EstatisticasRepositoryJPA implements EstatisticasRepository {
         return query.getResultList();
     }
 
+    @Override
     public List<Estatisticas> estatisticaPorItemPartida(Team team, ItemPartida item) {
         String sql = "select est from Estatisticas est where ";
 
@@ -79,6 +81,30 @@ public class EstatisticasRepositoryJPA implements EstatisticasRepository {
         }
 
         Query query = manager.createQuery(sql);
+
+        return query.getResultList();
+    }
+
+    public List<Estatisticas> estatisticasGeraisPorItemPartida(Team team, Partida partida) {
+        String sql = "select e from Estatisticas e ";
+        sql += " join e.itemPartida item ";
+        sql += " join item.partida partida ";
+        sql += " join partida.partida partida ";
+                
+        sql += " where partida.id = 1";
+       // sql += " and time.id = 5";
+       
+        System.out.println(sql);
+
+        Query query = manager.createQuery(sql);
+
+//        if (partida != null) {
+//            query.setParameter(1, partida.getId());
+//        }
+//        
+//        if (team != null) {
+//            query.setParameter(2, team.getId());
+//        }
 
         return query.getResultList();
     }

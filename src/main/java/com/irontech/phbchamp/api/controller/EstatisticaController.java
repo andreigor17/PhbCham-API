@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.irontech.phbchamp.domain.model.Estatisticas;
 import com.irontech.phbchamp.domain.model.ItemPartida;
+import com.irontech.phbchamp.domain.model.Partida;
 import com.irontech.phbchamp.domain.model.Team;
 import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
 import com.irontech.phbchamp.domain.repository.EstatisticasRepository;
 import com.irontech.phbchamp.domain.repository.ItemPartidaRepository;
+import com.irontech.phbchamp.domain.repository.PartidaRepository;
 import com.irontech.phbchamp.domain.repository.TeamRepository;
 import com.irontech.phbchamp.domain.service.CadastroEstatisticasService;
 import org.springframework.beans.BeanUtils;
@@ -39,6 +41,8 @@ public class EstatisticaController {
     public CampeonatoRepository campeonatoRepository;
     @Autowired
     public ItemPartidaRepository itemPartidaRepository;
+    @Autowired
+    public PartidaRepository partidaRepository;
 
     @GetMapping
     public List<Estatisticas> estatisticas() {
@@ -86,11 +90,27 @@ public class EstatisticaController {
             t = teamRepository.buscar(teamId);
         }
 
-        if (item != null) {
+        if (itemPartidaId != null) {
             item = itemPartidaRepository.buscar(itemPartidaId);
         }
 
         return estatisticasRepository.estatisticaPorItemPartida(t, item);
+    }
+    
+    @GetMapping("estatisticasPorPartida/{teamId}/{partidaId}")
+    public List<Estatisticas> estatisticasGeraisPorItemPartida(@PathVariable Long teamId, @PathVariable Long partidaId) {
+        Team t = new Team();
+        Partida p = new Partida();
+
+        if (teamId != null) {
+            t = teamRepository.buscar(teamId);
+        }
+
+        if (partidaId != null) {
+            p = partidaRepository.buscar(partidaId);
+        }
+
+        return estatisticasRepository.estatisticasGeraisPorItemPartida(t, p);
     }
 
     @PutMapping("/{estatsId}")
