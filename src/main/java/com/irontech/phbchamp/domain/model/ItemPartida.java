@@ -9,6 +9,7 @@ import com.irontech.phbchamp.enums.Maps;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,14 +28,14 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     private int scoreT2;
     @OneToOne
     private Mapas mapas;
-    @ManyToOne
-    private Partida partida;
+    @Column(name = "partida_id")
+    private Long partida;
     @OneToOne
     private Team team1;
     @OneToOne
     private Team team2;
-    @ManyToOne
-    private Campeonato campeonato;
+    @Column(name = "campeonato_id")
+    private Long campeonato;
     @OneToOne
     private Estatisticas estatisticas;
 
@@ -62,14 +63,6 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
         this.mapas = mapas;
     }
 
-    public Partida getPartida() {
-        return partida;
-    }
-
-    public void setPartida(Partida partida) {
-        this.partida = partida;
-    }
-
     public Team getTeam1() {
         return team1;
     }
@@ -86,20 +79,28 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
         this.team2 = team2;
     }
 
-    public Campeonato getCampeonato() {
-        return campeonato;
-    }
-
-    public void setCampeonato(Campeonato campeonato) {
-        this.campeonato = campeonato;
-    }
-
     public Estatisticas getEstatisticas() {
         return estatisticas;
     }
 
     public void setEstatisticas(Estatisticas estatisticas) {
         this.estatisticas = estatisticas;
+    }
+
+    public Long getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Long partida) {
+        this.partida = partida;
+    }
+
+    public Long getCampeonato() {
+        return campeonato;
+    }
+
+    public void setCampeonato(Long campeonato) {
+        this.campeonato = campeonato;
     }
 
 }

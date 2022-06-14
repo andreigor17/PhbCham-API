@@ -85,26 +85,22 @@ public class EstatisticasRepositoryJPA implements EstatisticasRepository {
         return query.getResultList();
     }
 
+    @Override
     public List<Estatisticas> estatisticasGeraisPorItemPartida(Team team, Partida partida) {
-        String sql = "select e from Estatisticas e ";
-        sql += " join e.itemPartida item ";
-        sql += " join item.partida partida ";
-        sql += " join partida.partida partida ";
-                
-        sql += " where partida.id = 1";
-       // sql += " and time.id = 5";
-       
-        System.out.println(sql);
+        String sql = " select est from Estatisticas est ";
+        sql += " join est.itemPartida item";
+        sql += " where item.partida = :partida and est.team = :team";
 
         Query query = manager.createQuery(sql);
 
-//        if (partida != null) {
-//            query.setParameter(1, partida.getId());
-//        }
-//        
-//        if (team != null) {
-//            query.setParameter(2, team.getId());
-//        }
+        if (partida != null) {
+            query.setParameter("partida", partida.getId());
+
+        }
+
+        if (team != null) {
+            query.setParameter("team", team);
+        }
 
         return query.getResultList();
     }
