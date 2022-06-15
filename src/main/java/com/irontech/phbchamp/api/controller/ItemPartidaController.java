@@ -60,4 +60,14 @@ public class ItemPartidaController {
 
     }
 
+    @GetMapping("/{itemId}")
+    public ResponseEntity<ItemPartida> buscar(@PathVariable Long itemId) {
+        ItemPartida itemPartida = itemPartidaRepository.buscar(itemId);
+        if (itemPartida != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(itemPartida);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
