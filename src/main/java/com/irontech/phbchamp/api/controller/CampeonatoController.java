@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irontech.phbchamp.domain.model.Campeonato;
-import com.irontech.phbchamp.domain.model.Player;
 import com.irontech.phbchamp.domain.repository.CampeonatoRepository;
-import com.irontech.phbchamp.domain.repository.PlayerRepository;
 import com.irontech.phbchamp.domain.service.CadastroCampService;
-import com.irontech.phbchamp.domain.service.CadastroPlayerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PutMapping;
 

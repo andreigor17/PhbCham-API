@@ -39,7 +39,8 @@ public class PlayerRepositoryJPA implements PlayerRepository{
 	@Transactional
 	public void remover(Long id) {
 		Player player = buscar(id);
-		manager.remove(player);
+                player.setAtivo(false);
+		manager.merge(player);
 	}
 	
 

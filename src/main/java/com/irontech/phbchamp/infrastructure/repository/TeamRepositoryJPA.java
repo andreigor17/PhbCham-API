@@ -39,7 +39,8 @@ public class TeamRepositoryJPA implements TeamRepository {
 	@Transactional
 	public void remover(Long id) {
 		Team team = buscar(id);
-		manager.remove(team);
+                team.setAtivo(false);
+		manager.merge(team);
 	}
 
 }

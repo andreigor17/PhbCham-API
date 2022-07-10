@@ -45,7 +45,8 @@ public class MapaRepositoryJPA implements MapaRepository {
     @Transactional
     public void remover(Long id) {
         Mapas mapas = buscar(id);
-        manager.remove(mapas);
+        mapas.setAtivo(false);
+        manager.merge(mapas);
     }
 
 }

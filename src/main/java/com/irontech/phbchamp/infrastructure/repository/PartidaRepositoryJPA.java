@@ -41,7 +41,8 @@ public class PartidaRepositoryJPA implements PartidaRepository {
 	@Transactional
 	public void remover(Long id) {
 		Partida partida = buscar(id);
-		manager.remove(partida);
+                partida.setAtivo(false);
+		manager.merge(partida);
 	}
 	
 

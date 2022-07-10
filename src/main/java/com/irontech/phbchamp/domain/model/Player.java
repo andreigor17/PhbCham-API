@@ -29,6 +29,10 @@ public class Player extends ModeloGenerico implements Serializable {
     private Funcoes funcao;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Estatisticas> estatisticas; 
+    private String urlSteam;
+    private String steamID;
+    @OneToMany
+    private List<Jogo> jogos;
 
     public String getNome() {
         return nome;
@@ -94,5 +98,28 @@ public class Player extends ModeloGenerico implements Serializable {
         this.estatisticas = estatisticas;
     }
 
+    public String getUrlSteam() {
+        return urlSteam;
+    }
+
+    public void setUrlSteam(String urlSteam) {
+        this.urlSteam = urlSteam;
+    }
+
+    public String getSteamID() {
+        return steamID;
+    }
+
+    public void setSteamID(String steamID) {
+        this.steamID = steamID;
+    }
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
 
 }

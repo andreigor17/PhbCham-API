@@ -39,7 +39,8 @@ public class CampeonatoRepositoryJPA implements CampeonatoRepository {
 	@Transactional
 	public void remover(Long id) {
 		Campeonato campeonato = buscar(id);
-		manager.remove(campeonato);
+                campeonato.setAtivo(false);
+		manager.merge(campeonato);
 	}
 
 }
