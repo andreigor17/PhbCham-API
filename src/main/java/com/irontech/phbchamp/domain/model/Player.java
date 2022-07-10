@@ -11,6 +11,7 @@ import com.irontech.phbchamp.enums.Funcoes;
 import com.irontech.phbchamp.generic.ModeloGenerico;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,10 +29,10 @@ public class Player extends ModeloGenerico implements Serializable {
     @Enumerated(EnumType.STRING)
     private Funcoes funcao;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Estatisticas> estatisticas; 
+    private List<Estatisticas> estatisticas;
     private String urlSteam;
     private String steamID;
-    @OneToMany
+    @ManyToMany
     private List<Jogo> jogos;
 
     public String getNome() {

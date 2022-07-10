@@ -16,6 +16,14 @@ import javax.persistence.Entity;
 public class Jogo extends ModeloGenerico implements Serializable{
     
     private String nome;
+    
+    public Jogo(){
+        
+    }
+
+    public Jogo(String nome) {
+        this.nome = nome;
+    }        
 
     public String getNome() {
         return nome;
