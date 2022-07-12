@@ -35,7 +35,7 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
     @OneToOne
     private Team team2;
     @Column(name = "campeonato_id")
-    private Long campeonato;
+    private Long camp;
     @OneToOne
     private Estatisticas estatisticas;
 
@@ -95,12 +95,14 @@ public class ItemPartida extends ModeloGenerico implements Serializable {
         this.partida = partida;
     }
 
-    public Long getCampeonato() {
-        return campeonato;
+    public Long getCamp() {
+        return camp;
     }
 
-    public void setCampeonato(Long campeonato) {
-        this.campeonato = campeonato;
+    public void setCamp(Long camp) {
+        this.camp = camp;
     }
+
+
 
 }
